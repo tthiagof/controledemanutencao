@@ -6,8 +6,9 @@ let manutInput = document.getElementById('manut');
 let pecasInput = document.getElementById('pecastxt');
 let intInput = document.getElementById('int');
 let nameInput = document.getElementById('name');
-let datefinal = document.getElementById('date-final')
-let timefinal = document.getElementById('time-final')
+let datefinal = document.getElementById('date-final');
+let timefinal = document.getElementById('time-final');
+let setorInput = document.getElementById('sector');
 
 // Recupera os registros armazenados no localStorage
 let manutencaoRegistros = JSON.parse(localStorage.getItem('manutencao')) || [];
@@ -59,7 +60,7 @@ function criarManutencaoElement(registro) {
 
     let manutencaoTexto = document.createElement('span');
     manutencaoTexto.classList.add('manutencao-texto');
-    manutencaoTexto.textContent = ` Nome: ${registro.nome} | Equipamento: ${registro.equipamento} | Manutenção: ${registro.tipoManutencao} | Peças: ${registro.pecas} | Tipo: ${registro.tipoInt}`;
+    manutencaoTexto.textContent = ` Setor:${registro.setor} | Nome: ${registro.nome} | Equipamento: ${registro.equipamento} | Manutenção: ${registro.tipoManutencao} | Peças: ${registro.pecas} | Tipo: ${registro.tipoInt}`;
 
     let manutencaoHora = document.createElement('span');
     manutencaoHora.classList.add('manutencao-hora');
@@ -89,6 +90,7 @@ function registrar() {
     const pecas = pecasInput.value;
     const nome = nameInput.value;  // Recupera o valor de nameInput
     const equipamento = text.value;
+    const setor = setorInput.value;
 
     if (!dataSelecionada || !horaSelecionada || !tipoManutencao || !pecas || !equipamento || !tipoInt || !nome || !dateend || !horaend) {  // Adiciona verificação para nameInput
         alert('Por favor, preencha todos os campos!');
@@ -106,7 +108,8 @@ function registrar() {
         nome: nome,  // Adiciona o campo nome no registro
         data: dataSelecionada,
         horaend: horaend,
-        dateend: dateend
+        dateend: dateend,
+        setor: setor
     });
 
     localStorage.setItem('manutencao', JSON.stringify(manutencaoRegistros));
@@ -118,6 +121,7 @@ function registrar() {
     nameInput.value = '';  // Limpa o campo nameInput após o registro
     datefinal.value = '';
     timefinal.value = '';
+    setorInput.value = '';
 }
 
 // Função para remover um registro de manutenção
@@ -193,11 +197,12 @@ function relatorio() {
         }
 
         let relatorioTexto = "Relatório de Manutenções\n\n";
-        let dadosExcel = [["Nome", "Data de inicio","Data final","Hora de inicio","Hora de término","Equipamento", "Manutenção", "Tipo", "Observação"]]; // Cabeçalhos para o Excel (adicionando "Nome")
+        let dadosExcel = [["Setor","Nome", "Data de inicio","Data final","Hora de inicio","Hora de término","Equipamento", "Manutenção", "Tipo", "Observação"]]; // Cabeçalhos para o Excel (adicionando "Nome")
 
         registrosFiltrados.forEach(registro => {  
             let dataFormatada = new Date(registro.data).toLocaleDateString('pt-BR'); //  a data para DD/MM/AAAA
             let datafinalFormatada = new Date(registro.dateend).toLocaleDateString('pt-BR');
+            relatorioTexto += `Setor: ${registro.setor}\n`;
             relatorioTexto += `Nome: ${registro.nome}\n`;// Adiciona "Nome" no relatório
             relatorioTexto += `Data de inicio: ${dataFormatada}\n`;
             relatorioTexto += `Data final: ${datafinalFormatada}\n`;
@@ -209,7 +214,7 @@ function relatorio() {
             relatorioTexto += `Observação: ${registro.pecas}\n`;
             relatorioTexto += "----------------------------------------\n";
             
-            dadosExcel.push([registro.nome, dataFormatada, registro.dateend, registro.hora, registro.horaend, registro.equipamento, registro.tipoManutencao, registro.tipoInt, registro.pecas]);  // Adiciona "Nome" ao Excel
+            dadosExcel.push([registro.setor, registro.nome, dataFormatada, registro.dateend, registro.hora, registro.horaend, registro.equipamento, registro.tipoManutencao, registro.tipoInt, registro.pecas]);  // Adiciona "Nome" ao Excel
         });
 
         let preRelatorio = document.createElement("pre");
