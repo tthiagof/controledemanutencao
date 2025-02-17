@@ -1,0 +1,114 @@
+.btn-remover {
+    margin-left: 10px; /* Ajuste conforme necessário */
+}
+/* Ajusta a largura máxima dos elementos para melhor visualização em mobile */
+.container {
+    max-width: 100%;
+    padding: 10px;
+}
+
+/* Estiliza os labels */
+.form-label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Estiliza os inputs de data */
+input[type="date"] {
+    font-size: 16px;
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Botão de gerar relatório */
+#gerarRelatorio {
+    background-color: #007bff;
+    color: white;
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#gerarRelatorio:hover {
+    background-color: #0056b3;
+}
+
+/* Botão de salvar PDF */
+#salvarPDF {
+    background-color: #28a745;
+    color: white;
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+#salvarPDF:hover {
+    background-color: #218838;
+}
+
+/* Estiliza o relatório */
+#resultado {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    border: 2px solid #007bff;
+}
+
+/* Estiliza cada item do relatório */
+.relatorio-item {
+    background-color: #e9ecef;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Adiciona estilo ao texto do relatório */
+.pre-relatorio {
+    font-size: 14px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Ajuste para o botão de remover */
+.removis {
+    margin-left: 10px; /* Dá um pequeno espaço entre o botão de remover e os outros elementos */
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.removis:hover {
+    background-color: #c82333;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .form-label, input[type="date"], #gerarRelatorio, #salvarPDF {
+        font-size: 14px;
+    }
+
+    #resultado {
+        padding: 10px;
+    }
+
+    .relatorio-item {
+        font-size: 12px;
+    }
+}

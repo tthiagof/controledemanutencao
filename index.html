@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Manutenção</title>
+    <link rel="icon" href="engrenagem.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" >
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Controle de Manutenção</h1>
+        <h1>hello word</h1>
+        <div id="add-list" class="mb-4">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Nome...">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="date">Data de inicio</label>
+                        <input type="date" class="form-control" name="data" id="date" placeholder="Data...">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="data-final">Data final</label>
+                        <input type="date" name="date-fim" class="form-control" id="date-final">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="time-inicio">Hora de inicio</label>
+                        <input type="time" class="form-control" name="hora" id="time" placeholder="Hora...">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="hora-final">Hora final</label>
+                        <input type="time" name="hora-final" class="form-control" id="time-final">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="lugar">Equipamentos</label>
+                        <input type="text" class="form-control" id="lugar" placeholder="Equipamentos...">
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="manut">Manutenção</label>
+                        <input list="manut-options" class="form-control" id="manut" name="manut" placeholder="Selecione ou digite">
+                        <datalist id="manut-options">
+                            <option value="Corretiva">
+                            <option value="Preventiva">
+                        </datalist>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="int">Int</label>
+                        <select name="INT" class="form-control" id="int">
+                            <option value="Interno">Interno</option>
+                            <option value="Externo">Externo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="pecastxt">Observação</label>
+                        <input type="text" class="form-control" name="pecas" id="pecastxt" placeholder="Observação...">
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <button id="add" class="btn btn-primary" onclick="registrar()">Registrar</button>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <button id="relat" onclick="relatorio()">Relatório</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section>
+            <div id="data">
+                <div id="compromissos">
+                    <div id="res"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0noCkpVhfmfRUlZGZ5ftZ1zkG2/dAF6ZwY3l5os2EOcxj70T" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
