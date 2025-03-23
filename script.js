@@ -30,28 +30,47 @@ function agruparManutencaoPorData() {
 // Função para renderizar os registros de manutenção
 function renderizarManutencao(dataSelecionada = null) {
     resultado.innerHTML = '';
-
     const manutencaoAgrupada = agruparManutencaoPorData();
-
-    if (dataSelecionada) {
-        if (manutencaoAgrupada[dataSelecionada]) {
-            manutencaoAgrupada[dataSelecionada].forEach(registro => {
-                criarManutencaoElement(registro);
-            });
-        }
-    } else {
-        Object.keys(manutencaoAgrupada).forEach(data => {
-            let dataDiv = document.createElement('div');
-            dataDiv.classList.add('data-manutencao');
-            dataDiv.textContent = `Data: ${data}`;
-            resultado.appendChild(dataDiv);
-
-            manutencaoAgrupada[data].forEach(registro => {
-                criarManutencaoElement(registro);
-            });
+    
+    function criarElementos(data) {
+        const dataDiv = document.createElement('div');
+        dataDiv.classList.add('data-manutencao');
+        dataDiv.textContent = `Data: ${new Date(data).toLocaleDateString('pt-BR')}`;
+        
+        manutencaoAgrupada[data].forEach(registro => {
+            const manutencaoDiv = document.createElement('div');
+            manutencaoDiv.className = 'manutencao';
+            
+            const texto = document.createElement('span');
+            texto.className = 'manutencao-texto';
+            texto.textContent = `Setor:${registro.setor} | Nome: ${registro.nome} | Equipamento: ${registro.equipamento} | Manutenção: ${registro.tipoManutencao} | Peças: ${registro.pecas} | Tipo: ${registro.tipoInt}`;
+            
+            const hora = document.createElement('span');
+            hora.className = 'manutencao-hora';
+            hora.textContent = ` | Hora: ${registro.hora}`;
+            
+            const botaoRemover = document.createElement('button');
+            botaoRemover.className = 'btn btn-danger btn-sm btn-remover';
+            botaoRemover.textContent = 'Remover';
+            botaoRemover.onclick = () => removerManutencao(registro.id);
+            
+            manutencaoDiv.appendChild(texto);
+            manutencaoDiv.appendChild(hora);
+            manutencaoDiv.appendChild(botaoRemover);
+            
+            dataDiv.appendChild(manutencaoDiv);
         });
+        
+        resultado.appendChild(dataDiv);
+    }
+    
+    if (dataSelecionada) {
+        criarElementos(dataSelecionada);
+    } else {
+        Object.keys(manutencaoAgrupada).forEach(criarElementos);
     }
 }
+
 
 // Função para criar o elemento de cada manutenção
 function criarManutencaoElement(registro) {
